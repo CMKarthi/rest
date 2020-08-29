@@ -16,10 +16,10 @@ public class StudentController {
     }
     @GetMapping("/students")
     List<Student> getStudents() {
-        Student s1 = new Student(1,"Samyu");
-        Student s2 = new Student(2,"Cherry");
-        Student s3 = new Student(3,"Karthi");
-        Student s4 = new Student(4,"Saran");
+        Student s1 = new Student(1L, "Samyu");
+        Student s2 = new Student(2L,"Cherry");
+        Student s3 = new Student(3L,"Karthi");
+        Student s4 = new Student(4L,"Saran");
         List<Student> studentList = new ArrayList<>();
         studentList.add(s1);
         studentList.add(s2);
