@@ -1,15 +1,14 @@
 package com.karthi.rest.controllers;
 
 import com.karthi.rest.model.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class StudentController {
+
     @GetMapping("/students/{id}")
     Student getStudent(@PathVariable Long id) {
         return new Student(id, "Samyu");
@@ -28,4 +27,11 @@ public class StudentController {
         return studentList;
     }
 
+    @PostMapping("/students")
+    public void postStudent(@RequestBody Student newStudent)
+    {
+        System.out.println("Id:  "+newStudent.getId());
+        System.out.println("Name :  "+newStudent.getName());
+
+    }
 }
