@@ -4,6 +4,7 @@ import com.karthi.rest.model.Student;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 public class StudentController {
@@ -17,9 +18,13 @@ public class StudentController {
     @GetMapping("/students")
     ArrayList<Student> getStudents() {
        //ArrayList<Student> studentArray = new ArrayList<Student>();
-        Collection<Student> values = hashStudent.values();
-        ArrayList<Student> studentArray = new ArrayList<>(values);
-        return studentArray;
+       // Collection<Student> values = hashStudent.values();
+        ArrayList<Student> values
+                = hashStudent.values().stream().collect(
+                Collectors.toCollection(ArrayList::new));
+
+       // ArrayList<Student> studentArray = new ArrayList<>(values);
+        return values;
     }
 
     @PostMapping("/students")
