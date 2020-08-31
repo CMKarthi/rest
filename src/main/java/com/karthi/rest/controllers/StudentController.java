@@ -3,10 +3,7 @@ package com.karthi.rest.controllers;
 import com.karthi.rest.model.Student;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class StudentController {
@@ -15,12 +12,14 @@ public class StudentController {
 
     @GetMapping("/students/{id}")
     Student getStudent(@PathVariable Long id) {
-        return (hashStudent.get(id));
+        return hashStudent.get(id);
     }
     @GetMapping("/students")
-    HashMap<Long, Student> getStudents() {
-
-        return hashStudent;
+    ArrayList<Student> getStudents() {
+       //ArrayList<Student> studentArray = new ArrayList<Student>();
+        Collection<Student> values = hashStudent.values();
+        ArrayList<Student> studentArray = new ArrayList<>(values);
+        return studentArray;
     }
 
     @PostMapping("/students")
