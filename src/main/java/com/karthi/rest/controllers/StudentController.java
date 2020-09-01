@@ -16,21 +16,18 @@ public class StudentController {
         return hashStudent.get(id);
     }
     @GetMapping("/students")
-    ArrayList<Student> getStudents() {
-       //ArrayList<Student> studentArray = new ArrayList<Student>();
-       // Collection<Student> values = hashStudent.values();
-        ArrayList<Student> values
-                = hashStudent.values().stream().collect(
-                Collectors.toCollection(ArrayList::new));
+    List<Student> getStudents() {
 
-       // ArrayList<Student> studentArray = new ArrayList<>(values);
-        return values;
-    }
+        return hashStudent.values()
+                .stream()
+                .collect(Collectors.toList());
+           }
 
     @PostMapping("/students")
     public void postStudent(@RequestBody Student newStudent) {
 
         hashStudent.put(hashStudentKey++,newStudent);
-       // hashStudent.put(newStudent.getId(),newStudent);
+
     }
 }
+
