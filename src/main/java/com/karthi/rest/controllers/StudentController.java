@@ -1,6 +1,7 @@
 package com.karthi.rest.controllers;
 
 import com.karthi.rest.model.Student;
+import com.karthi.rest.model.StudentRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -24,10 +25,12 @@ public class StudentController {
            }
 
     @PostMapping("/students")
-    public void postStudent(@RequestBody Student newStudent) {
+    public void postStudent(@RequestBody StudentRequest s) {
 
-        hashStudent.put(hashStudentKey++,newStudent);
+       Student newStudent = new Student(hashStudentKey,s.getName(),s.getGender());
 
+        hashStudent.put(hashStudentKey,newStudent);
+        hashStudentKey= hashStudentKey+1;
     }
 }
 
