@@ -3,6 +3,9 @@ package com.karthi.rest.controllers;
 import com.karthi.rest.model.Student;
 import com.karthi.rest.model.StudentRequest;
 import com.karthi.rest.repository.HashmapStudentRepository;
+import com.karthi.rest.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -10,9 +13,17 @@ import java.util.stream.Collectors;
 
 @RestController
 public class StudentController {
-   /* HashMap<Long, Student> hashStudent = new HashMap<Long, Student>();
-    Long hashStudentKey =1L;*/
-    HashmapStudentRepository h1= new HashmapStudentRepository();
+
+    private HashmapStudentRepository h1;
+
+
+    StudentController(HashmapStudentRepository h1)
+    {
+
+        Objects.requireNonNull(h1);
+        this.h1 = h1;
+    }
+
 
     @GetMapping("/students/{id}")
     Student getStudent(@PathVariable Long id) {

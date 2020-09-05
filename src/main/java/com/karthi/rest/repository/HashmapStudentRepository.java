@@ -2,11 +2,12 @@ package com.karthi.rest.repository;
 
 import com.karthi.rest.model.Student;
 import com.karthi.rest.model.StudentRequest;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class HashmapStudentRepository implements StudentRepository{
     HashMap<Long, Student> hashStudent = new HashMap<Long, Student>();
     Long hashStudentKey =1L;
@@ -25,6 +26,7 @@ public class HashmapStudentRepository implements StudentRepository{
 
     @Override
     public void addStudent(StudentRequest s) {
+
         Student newStudent = new Student(hashStudentKey,s.getName(),s.getGender());
 
         hashStudent.put(hashStudentKey,newStudent);
