@@ -7,10 +7,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Student {
-    Long id;
+public class StudentRequest {
     String name;
     String gender;
-
-
 }
