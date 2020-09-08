@@ -7,8 +7,9 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
-@Component
-public class HashmapStudentRepository implements StudentRepository{
+
+public class HashmapStudentRepository implements StudentRepository
+ {
     HashMap<Long, Student> hashStudent = new HashMap<Long, Student>();
     Long hashStudentKey =1L;
     @Override
@@ -25,13 +26,11 @@ public class HashmapStudentRepository implements StudentRepository{
     }
 
     @Override
-    public void addStudent(StudentRequest s) {
-
-        Student newStudent = new Student(hashStudentKey,s.getName(),s.getGender());
-
-        hashStudent.put(hashStudentKey,newStudent);
+    public void addStudent(Student s) {
+     //Student newStudent = new Student(hashStudentKey,s.getName(),s.getGender());
+        s.setId(hashStudentKey);
+        hashStudent.put(hashStudentKey,s);
         hashStudentKey= hashStudentKey+1;
-
     }
 
     @Override
