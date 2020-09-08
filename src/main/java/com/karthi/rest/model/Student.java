@@ -3,6 +3,7 @@ package com.karthi.rest.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 @AllArgsConstructor
 @Getter
@@ -11,6 +12,11 @@ public class Student {
     Long id;
     String name;
     String gender;
-
+public Student()
+{
+    this.id = 100L;
+    this.name="Sample";
+    this.gender="Female";
+}
 
 }
