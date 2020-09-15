@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -45,7 +46,7 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<Void> postStudent(@RequestBody StudentRequest s) {
+    public ResponseEntity<Void> postStudent(@Valid @RequestBody StudentRequest s) {
         Student newStudent = new Student();
        newStudent.setGender(s.getGender());
        newStudent.setName(s.getName());
