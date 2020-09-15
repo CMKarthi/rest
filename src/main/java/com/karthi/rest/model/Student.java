@@ -14,9 +14,7 @@ public class Student {
     String gender;
 public Student()
 {
-    this.id = 100L;
-    this.name="Sample";
-    this.gender="Female";
+
 }
 
 }

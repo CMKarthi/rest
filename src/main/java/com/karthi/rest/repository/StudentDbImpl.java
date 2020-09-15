@@ -1,5 +1,6 @@
 package com.karthi.rest.repository;
 
+import com.karthi.rest.exceptions.StudentNotFoundException;
 import com.karthi.rest.mapper.StudentRowMapper;
 import com.karthi.rest.model.Student;
 import com.karthi.rest.model.StudentRequest;
@@ -39,8 +40,12 @@ public class StudentDbImpl implements StudentRepository {
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("studentId",id);
 
-        return template.queryForObject("select * from student where studentId = :studentId",param,new StudentRowMapper());
-        
+        List<Student> student = template.query("select * from student where studentId = :studentId",param,new StudentRowMapper());
+
+        if(student.size()==0)
+            throw new StudentNotFoundException("Student with id " + id + " not found");
+        else
+            return student.get(0);
     }
 
     @Override
@@ -65,7 +70,7 @@ public class StudentDbImpl implements StudentRepository {
         template.execute(sql,map,new PreparedStatementCallback<Object>() {
             @Override
             public Object doInPreparedStatement(PreparedStatement ps)
-                    throws SQLException, DataAccessException {
+                    throws SQLException, DataAccessException{
                 return ps.executeUpdate();
             }
         });
